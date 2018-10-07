@@ -24,9 +24,8 @@ main (void)
   testName = "";
   
   initStorageManager();
-
-  testCreateOpenClose();
   testSinglePageContent();
+  testCreateOpenClose();
 
   return 0;
 }
@@ -65,15 +64,21 @@ testSinglePageContent(void)
   SM_PageHandle ph;
   int i;
 
+ printf("%d",PAGE_SIZE);
+
   testName = "test single page content";
 
   ph = (SM_PageHandle) malloc(PAGE_SIZE);
 
   // create a new page file
+printf("Print new page file");
   TEST_CHECK(createPageFile (TESTPF));
   TEST_CHECK(openPageFile (TESTPF, &fh));
   printf("created and opened file\n");
   
+
+
+printf("read first page into handle");
   // read first page into handle
   TEST_CHECK(readFirstBlock (&fh, ph));
   // the page should be empty (zero bytes)
